@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h2>{{ post.title }}</h2>
+<p><strong>Stock:</strong> {{ post.stock_name }}</p>
+<p class="text-muted">{{ post.created_at }}</p>
+
+<hr>
+
+<p>{{ post.content }}</p>
+
+<canvas id="stockChart" height="100"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('stockChart');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Mon','Tue','Wed','Thu','Fri'],
+        datasets: [{
+            label: 'Sample Price',
+            data: [100, 105, 102, 110, 115]
+        }]
+    }
+});
+</script>
+
+{% endblock %}
